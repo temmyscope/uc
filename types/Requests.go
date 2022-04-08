@@ -1,9 +1,8 @@
 package types
 
 type RequestClip struct {
-	ID        string `json:"id"`
-	UserId    string `json:"userId"`
+	UserId    string `json:"user_id"`
 	DeviceId  string `json:"device_id"`
 	Content   string `json:"content"`
-	CreatedAt string `json:"createdAt"`
+	CreatedAt string `json:"created_at"`
 }

@@ -2,7 +2,6 @@ package models
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 
 	Config "../../config"
@@ -10,7 +9,6 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 var dbConnection *mongo.Database = Config.ConnectDB()
@@ -24,8 +22,6 @@ func CreateOneClip(clip Types.Clip) primitive.ObjectID {
 		panic(err)
 	}
 	fmt.Printf("%s\n", "Document Created", res.InsertedID)
-
-	//id :=
 
 	return res.InsertedID
 }

@@ -15,7 +15,7 @@ type User struct {
 	UserName   string             `bson:"text"`
 	Email      string             `bson:"email"`
 	Password   string             `bson:"password"`
-	IsVerified bool               `bson:"is_verified"`
+	IsVerified bool               `bson:"isVerified"`
 	CreatedAt  time.Time          `bson:"created_at"`
 	UpdatedAt  time.Time          `bson:"updated_at"`
 }
@@ -25,7 +25,7 @@ type User struct {
 **/
 type Device struct {
 	ID         primitive.ObjectID `bson:"_id"`
-	UserId     primitive.ObjectID `bson:"user_id"`
+	UserId     primitive.ObjectID `bson:"userId"`
 	Name       string             `bson:"name"`
 	Model      string             `bson:"model"`
 	UniqueID   string             `bson:"unique_id"`
