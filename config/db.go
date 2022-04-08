@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"context"
@@ -13,7 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func index() {
+func ConnectDB() mongo.Database {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found")
 	}
@@ -24,6 +24,7 @@ func index() {
 	}
 
 	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
+
 	if err != nil {
 		panic(err)
 	}
@@ -34,22 +35,9 @@ func index() {
 		}
 	}()
 
-	coll := client.Database("sample_mflix").Collection("movies")
-	title := "Back to the Future"
+	var databaseName string = os.Getenv("DB_NAME")
 
-	var result bson.M
-	err = coll.FindOne(context.TODO(), bson.D{{"title", title}}).Decode(&result)
-	if err == mongo.ErrNoDocuments {
-		fmt.Printf("No document was found with the title %s\n", title)
-		return
-	}
-	if err != nil {
-		panic(err)
-	}
+	dbConnection := client.Database(databaseName)
 
-	jsonData, err := json.MarshalIndent(result, "", "    ")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("%s\n", jsonData)
+	return *dbConnection
 }

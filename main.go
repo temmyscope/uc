@@ -4,65 +4,18 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"net/http"
+	"os"
 
 	Controllers "./app/controllers"
+	Types "./types"
 	"github.com/gin-gonic/gin"
-	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-type Clip struct {
-	ID        string `json:"id"`
-	UserId    string `json:"userId"`
-	DeviceId  string `json:"device_id"`
-	Content   string `json:"content"`
-	CreatedAt string `json:"createdAt"`
-}
-
 var collection *mongo.Collection
 var ctx = context.TODO()
-
-type ClipBoard []Clip
-
-var clips = []Clip{
-	{ID: "1", UserId: "2", DeviceId: "3", Content: "The lyrics I choosse", CreatedAt: "2022-04-05 09:15"},
-}
-
-//route for fetching content to clipBoard
-func fetchClip(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "ClipBoard Content:")
-}
-
-//route for adding content to clipBoard
-func addClip(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to Home")
-}
-
-// route for adding content to clipBoard
-// (Run in background) for syncing offline clipboard with server
-func addClips(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to Home")
-}
-
-// route for updating offline clipboard from server
-func fetchClips(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to Home")
-}
-
-func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to Home")
-}
-
-func handleRequests() {
-	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/", homePage).Methods("GET")
-	router.HandleFunc("/sync/clips", fetchClips).Methods("GET")
-
-	log.Fatal(http.ListenAndServe(":8081", router))
-}
 
 func initDBConnection() {
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017/")
@@ -71,6 +24,12 @@ func initDBConnection() {
 		log.Fatal(err)
 	}
 	collection = client.Database("clipboarddb").Collection("tasks")
+}
+
+type ClipBoard []Types.Clip
+
+var clips = []Types.Clip{
+	{UserId: "2", DeviceId: "3", Content: "The lyrics I choosse", CreatedAt: "2022-04-05 09:15"},
 }
 
 func main() {
@@ -114,5 +73,7 @@ func main() {
 	//delete device
 
 	//logout
+
+	router.Run(os.Getenv("PORT"))
 
 }

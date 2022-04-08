@@ -1,10 +1,14 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 //register
 func Register(c *gin.Context) {
 
+	c.IndentedJSON(http.StatusOK, "")
 }
 
 //login

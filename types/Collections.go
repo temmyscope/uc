@@ -11,12 +11,13 @@ import (
 **/
 type User struct {
 	ID         primitive.ObjectID `bson:"_id"`
-	name       string             `bson:"text"`
-	email      string             `bson:"email"`
-	password   string             `bson:"password"`
-	isVerified bool               `bson:"is_verified"`
-	createdAt  time.Time          `bson:"created_at"`
-	updatedAt  time.Time          `bson:"updated_at"`
+	Name       string             `bson:"text"`
+	UserName   string             `bson:"text"`
+	Email      string             `bson:"email"`
+	Password   string             `bson:"password"`
+	IsVerified bool               `bson:"is_verified"`
+	CreatedAt  time.Time          `bson:"created_at"`
+	UpdatedAt  time.Time          `bson:"updated_at"`
 }
 
 /**
@@ -24,25 +25,25 @@ type User struct {
 **/
 type Device struct {
 	ID         primitive.ObjectID `bson:"_id"`
-	userId     primitive.ObjectID `bson:"user_id"`
-	name       string             `bson:"name"`
-	model      string             `bson:"model"`
-	uniqueID   string             `bson:"unique_id"`
-	isVerified bool               `bson:"is_verified"`
-	createdAt  time.Time          `bson:"created_at"`
-	updatedAt  time.Time          `bson:"updated_at"`
-	lastSyncAt time.Time          `bson:"last_sync_at"` //last time the device was synced
+	UserId     primitive.ObjectID `bson:"user_id"`
+	Name       string             `bson:"name"`
+	Model      string             `bson:"model"`
+	UniqueID   string             `bson:"unique_id"`
+	IsVerified bool               `bson:"is_verified"`
+	CreatedAt  time.Time          `bson:"created_at"`
+	UpdatedAt  time.Time          `bson:"updated_at"`
+	LastSyncAt time.Time          `bson:"last_sync_at"` //last time the device was synced
 }
 
 /**
-* The Clip Collection Model - represents each item copid to the clipBoard
+* The Clip Collection Model - represents each item copied to the clipBoard
 **/
 type Clip struct {
 	ID        primitive.ObjectID `bson:"_id"`
-	userId    primitive.ObjectID `bson:"user_id"`
-	deviceId  primitive.ObjectID `bson:"device_id"`
-	content   string             `bson:"content"`
-	isSafe    bool               `bson:"is_safe"`    //whether the text might be a password (length 8-16)
-	createdAt time.Time          `bson:"created_at"` //when it created on user device
-	updatedAt time.Time          `bson:"updated_at"` //when it was written to server
+	UserId    primitive.ObjectID `bson:"user_id"`
+	DeviceId  primitive.ObjectID `bson:"device_id"`
+	Content   string             `bson:"content"`
+	IsSafe    bool               `bson:"is_safe"`    //whether the text might be a password (length 8-16)
+	CreatedAt time.Time          `bson:"created_at"` //when it created on user device
+	UpdatedAt time.Time          `bson:"updated_at"` //when it was written to server
 }

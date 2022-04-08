@@ -1,10 +1,14 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 //fetch devices
 func FetchDevices(c *gin.Context) {
 
+	c.IndentedJSON(http.StatusOK, "")
 }
 
 //fetch specific device

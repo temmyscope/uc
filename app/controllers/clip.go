@@ -1,10 +1,15 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
 
 //save single clip
 func SaveClip(c *gin.Context) {
 
+	c.IndentedJSON(http.StatusOK, "")
 }
 
 //save and sync multiple clips upwards from client
