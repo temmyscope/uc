@@ -8,7 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func CreateOneClip(clip Types.RequestClip) *mongo.InsertOneResult {
+func CreateOneClip(clip Types.Clip) *mongo.InsertOneResult {
 
 	clipCollection := Config.DBConnection.Collection("clip")
 

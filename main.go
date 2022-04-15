@@ -14,7 +14,7 @@ func main() {
 	router := gin.Default()
 
 	authRoute := router.Group("/api/auth")
-	otherRoute := router.Group("/api/")
+	otherRoute := router.Group("/api")
 
 	//register
 	authRoute.POST("/register", Controllers.Register)
@@ -32,7 +32,7 @@ func main() {
 	authRoute.POST("/device-login", Controllers.DeviceLogin)
 
 	//save single clip
-	otherRoute.POST("")
+	otherRoute.POST("/save", Controllers.SaveClip)
 
 	//save and sync multiple clips upwards from client
 

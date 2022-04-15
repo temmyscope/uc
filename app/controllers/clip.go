@@ -10,7 +10,7 @@ import (
 
 //save single clip
 func SaveClip(c *gin.Context) {
-	var clip Types.RequestClip
+	var clip Types.Clip
 
 	if err := c.BindJSON(&clip); err != nil {
 		return
