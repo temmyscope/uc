@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	Controllers "./app/controllers"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	Controllers "github.com/temmyscope/uc/app/controllers"
 )
 
 func main() {
@@ -14,6 +14,7 @@ func main() {
 	router := gin.Default()
 
 	authRoute := router.Group("/api/auth")
+	otherRoute := router.Group("/api/")
 
 	//register
 	authRoute.POST("/register", Controllers.Register)
@@ -31,6 +32,7 @@ func main() {
 	authRoute.POST("/device-login", Controllers.DeviceLogin)
 
 	//save single clip
+	otherRoute.POST("")
 
 	//save and sync multiple clips upwards from client
 

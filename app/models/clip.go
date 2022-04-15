@@ -3,12 +3,12 @@ package models
 import (
 	"context"
 
-	Config "../../config"
-	Types "../../types"
+	Config "github.com/temmyscope/uc/config"
+	Types "github.com/temmyscope/uc/types"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func CreateOneClip(clip *Types.Clip) *mongo.InsertOneResult {
+func CreateOneClip(clip Types.RequestClip) *mongo.InsertOneResult {
 
 	clipCollection := Config.DBConnection.Collection("clip")
 

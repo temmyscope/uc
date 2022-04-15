@@ -4,12 +4,21 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	Model "github.com/temmyscope/uc/app/models"
+	Types "github.com/temmyscope/uc/types"
 )
 
 //save single clip
 func SaveClip(c *gin.Context) {
+	var clip Types.RequestClip
 
-	c.IndentedJSON(http.StatusOK, "")
+	if err := c.BindJSON(&clip); err != nil {
+		return
+	}
+
+	data := Model.CreateOneClip(clip)
+
+	c.IndentedJSON(http.StatusCreated, data)
 }
 
 //save and sync multiple clips upwards from client

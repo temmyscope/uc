@@ -5,4 +5,5 @@ type RequestClip struct {
 	DeviceId  string `json:"device_id"`
 	Content   string `json:"content"`
 	CreatedAt string `json:"created_at"`
+	IsSafe    bool   `json:"is_safe"`
 }
