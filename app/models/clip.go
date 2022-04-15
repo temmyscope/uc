@@ -2,28 +2,23 @@ package models
 
 import (
 	"context"
-	"fmt"
 
 	Config "../../config"
 	Types "../../types"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-var dbConnection *mongo.Database = Config.ConnectDB()
+func CreateOneClip(clip *Types.Clip) *mongo.InsertOneResult {
 
-func CreateOneClip(clip Types.Clip) primitive.ObjectID {
-	collection := dbConnection.Collection("clip")
+	clipCollection := Config.DBConnection.Collection("clip")
 
-	res, err := collection.InsertOne(context.TODO(), bson.M(clip))
+	res, err := clipCollection.InsertOne(context.TODO(), clip)
 
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%s\n", "Document Created", res.InsertedID)
 
-	return res.InsertedID
+	return res
 }
 
 func FetchClips() {
