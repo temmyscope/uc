@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+
 	godotenv.Load()
 
 	router := gin.Default()
